@@ -2,17 +2,11 @@ FROM node:7.4.0
 
 MAINTAINER [iS] <contato@internetsistemas.com.br>
 
-#USER root
-
 RUN apt-get update && \
     apt-get install -y xvfb fontconfig openjdk-7-jre-headless chromium rubygems && \
-    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+    gem install dpl -q
 
-RUN gem install dpl -q
+RUN Xvfb :99 -screen 0 1920x1080x24 2>&1 >/dev/null &
 
-# RUN mkdir /tmp/.X11-unix && chmod 1777 /tmp/.X11-unix
-# ADD xvfb.sh /bin/start_xvfb
-# RUN chmod +x /bin/start_xvfb
-
-# USER cirunner
 ENV DISPLAY :99
