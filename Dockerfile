@@ -8,7 +8,7 @@ RUN \
 
 RUN \
   apt-get update && \
-  apt-get install -y xvfb libgconf2-dev google-chrome-stable rubygems && \
+  apt-get install -y xvfb google-chrome-stable rubygems && \
   apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN \
@@ -24,6 +24,6 @@ RUN \
   chmod +x /etc/init.d/xvfb && \
   chmod +x /entrypoint.sh
 
-RUN npm install -g angular-cli
+RUN npm install -g angular-cli node-sass phantomjs-prebuilt
 
 ENTRYPOINT ["/entrypoint.sh"]
